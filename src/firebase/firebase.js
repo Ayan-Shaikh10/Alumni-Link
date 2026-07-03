@@ -1,19 +1,27 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "firebase/app";
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCejmdQhJ8guWXTVMvvBpDPZwuOybcemKw",
-    authDomain: "alumni-link-d6b44.firebaseapp.com",
-    projectId: "alumni-link-d6b44",
-    storageBucket: "alumni-link-d6b44.firebasestorage.app",
-    messagingSenderId: "566048501452",
-    appId: "1:566048501452:web:40a1d76480719dbc36dc69"
-  };
+import { getAuth } from "firebase/auth";
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyCejmdQhJ8guWXTVMvvBpDPZwuOybcemKw",
+
+  authDomain: "alumni-link-d6b44.firebaseapp.com",
+
+  projectId: "alumni-link-d6b44",
+
+  storageBucket: "alumni-link-d6b44.firebasestorage.app",
+
+  messagingSenderId: "566048501452",
+
+  appId: "1:566048501452:web:40a1d76480719dbc36dc69"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+
+export const db = getFirestore(app);
