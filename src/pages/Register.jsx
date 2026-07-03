@@ -4,6 +4,7 @@ import{auth,db} from "../firebase/firebase";
 import{createUserWithEmailAndPassword} from"firebase/auth";
 import{doc,setDoc} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 import {
@@ -81,6 +82,8 @@ function Register() {
   confirmPassword: ""
 
 });
+
+  const [loading, setLoading]=useState(false);
 
 const navigate = useNavigate();
 
@@ -218,7 +221,9 @@ const validateForm = () => {
 
 };
 
-const handleSubmit = (e) => {
+
+
+const handleSubmit = async (e) => {
 
   e.preventDefault();
 
@@ -228,9 +233,88 @@ const handleSubmit = (e) => {
 
   }
 
-  console.log("Form is Valid ✅");
+  setLoading(true);
 
-  console.log(formData);
+  try {
+
+    const userCredential = await createUserWithEmailAndPassword(
+
+      auth,
+
+      formData.email,
+
+      formData.password
+
+    );
+
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+
+      uid: user.uid,
+
+      fullName: formData.fullName,
+
+      email: formData.email,
+
+      phone: formData.phone,
+
+      degree: formData.degree,
+
+      department: formData.department,
+
+      graduationYear: formData.graduationYear,
+
+      profession: formData.profession,
+
+      company: formData.company,
+
+      city: formData.city,
+
+      createdAt: new Date()
+
+    });
+
+    toast.success("Account Created Successfully!");
+
+    navigate("/login");
+    setLoading(false);
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    switch (error.code) {
+
+  case "auth/email-already-in-use":
+
+    toast.error("Email already registered.");
+
+    break;
+
+  case "auth/invalid-email":
+
+    toast.error("Invalid email address.");
+
+    break;
+
+  case "auth/weak-password":
+
+    toast.error("Password is too weak.");
+
+    break;
+
+  default:
+
+    toast.error("Something went wrong.");
+
+}
+
+setLoading(false);
+
+  }
 
 };
 
@@ -820,13 +904,15 @@ const handleSubmit = (e) => {
 
         {/* Create Account Button */}
 
-        <button type = "submit"
-          className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-4 rounded-xl transition duration-300 text-lg shadow-lg hover:shadow-cyan-400/30"
-        >
+        <button
+  type="submit"
+  disabled={loading}
+  className="w-full bg-cyan-400 text-black py-3 rounded-lg font-semibold hover:bg-cyan-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
+>
 
-          Create Account
+  {loading ? "Creating Account..." : "Create Account"}
 
-        </button>
+</button>
 
 
 
