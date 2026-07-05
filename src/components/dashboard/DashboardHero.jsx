@@ -1,4 +1,6 @@
-function DashboardHero() {
+
+
+function DashboardHero({userData}) {
 
   return (
 
@@ -9,6 +11,13 @@ function DashboardHero() {
         <h1 className="text-5xl font-bold text-white">
 
           Welcome Back 👋
+
+          <h1 className="text-5xl font-bold text-white">
+
+           {userData?.fullName || "Loading.."}
+
+        </h1>
+         
 
         </h1>
 
