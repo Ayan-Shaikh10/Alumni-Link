@@ -4,13 +4,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import{ToastContainer} from "react-toastify";
+import { AuthProvider } from "./contex/AuthContext";
 
 import "./index.css";
 import App from "./App";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <AuthProvider>
+
+      <BrowserRouter>
       <App />
       <ToastContainer
       position="top-right"
@@ -22,5 +25,9 @@ createRoot(document.getElementById("root")).render(
       theme="dark"
       />
     </BrowserRouter>
+
+
+    </AuthProvider>
+
   </StrictMode>
 );
