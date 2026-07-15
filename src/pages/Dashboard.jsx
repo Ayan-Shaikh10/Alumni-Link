@@ -5,6 +5,7 @@ import UpcomingEvents from "../components/dashboard/UpcomingEvents";
 import RecentAlumni from "../components/dashboard/RecentAlumni";
 import ProfileProgress from "../components/dashboard/ProfileProgress";
 import { useAuth } from "../contex/AuthContext";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 // main function
 function Dashboard() {
@@ -21,7 +22,9 @@ const {userData} = useAuth();
 
 
 // render parts
-  return (
+return (
+
+  <DashboardLayout>
 
     <div className="min-h-screen bg-slate-950">
 
@@ -31,7 +34,6 @@ const {userData} = useAuth();
 
       <ProfileProgress />
 
-
       <QuickActions />
 
       <UpcomingEvents />
@@ -40,7 +42,9 @@ const {userData} = useAuth();
 
     </div>
 
-  );
+  </DashboardLayout>
+
+);
 
 }
 

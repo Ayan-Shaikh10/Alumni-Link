@@ -13,6 +13,10 @@ function ProfileProgress() {
     remaining
   } = calculateProfileProgress(userData);
 
+  if(progress===100){
+    return null;
+  }
+
   return (
     <section className="max-w-7xl mx-auto px-8 mt-10">
 

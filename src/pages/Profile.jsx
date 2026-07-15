@@ -10,10 +10,15 @@ import AboutSection from "../components/profile/AboutSection";
 import SkillsSection from "../components/profile/SkillesSection";
 import ExperienceSection from "../components/profile/ExperienceSection";
 import SaveButton from "../components/profile/SaveButton";
+import { useNavigate } from "react-router-dom";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 
 
 function Profile() {
+
+  const navigate = useNavigate();
+ 
 
   const {
     currentUser,
@@ -104,6 +109,11 @@ const handleSave = async () => {
 
     alert("Profile updated successfully!");
 
+     setTimeout(() => {
+    navigate("/dashboard");
+
+  }, 1000);
+
   } catch (error) {
 
     console.error(error);
@@ -143,6 +153,10 @@ for (let year = currentYear + 5; year >= 1990; year--) {
 }
 
 return (
+
+  <DashboardLayout>
+
+ 
 
   <div className="min-h-screen bg-slate-950">
 
@@ -212,6 +226,8 @@ return (
     </div>
 
   </div>
+
+   </DashboardLayout>
 
 );
 
