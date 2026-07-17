@@ -5,13 +5,11 @@ import {
 
 function EventCard({
 
-  title,
+  event,
 
-  date,
+  onRegister,
 
-  location,
-
-  onRegister
+  registered = false
 
 }) {
 
@@ -32,7 +30,7 @@ function EventCard({
 
       <h3 className="text-xl font-bold text-white">
 
-        {title}
+        {event.title}
 
       </h3>
 
@@ -40,7 +38,13 @@ function EventCard({
 
         <FaCalendarAlt className="text-cyan-400" />
 
-        <span>{date}</span>
+        <span>{new Date(event.date + "T00:00:00").toLocaleDateString("en-GB",
+        {
+          day:"numeric",
+          month:"short",
+          year:"numeric"
+        }
+        )}</span>
 
       </div>
 
@@ -48,30 +52,34 @@ function EventCard({
 
         <FaMapMarkerAlt className="text-cyan-400" />
 
-        <span>{location}</span>
+        <span>{event.location}</span>
 
       </div>
 
       <button
 
-        onClick={onRegister}
+        onClick={() => onRegister(event)}
 
-        className="
+        disabled={registered}
+
+        className={`
           mt-6
           px-6
           py-3
           rounded-xl
-          bg-cyan-500
-          text-slate-950
           font-semibold
-          hover:bg-cyan-400
           transition-all
           duration-300
-        "
+          ${
+            registered
+              ? "bg-green-500 text-white cursor-default"
+              : "bg-cyan-500 text-slate-950 hover:bg-cyan-400"
+          }
+        `}
 
       >
 
-        Register
+        {registered ? "✓ Registered" : "Register"}
 
       </button>
 

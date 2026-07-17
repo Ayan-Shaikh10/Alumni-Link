@@ -1,13 +1,18 @@
 import { useState } from "react";
 
-function CreateEventForm({ onSubmit, loading }) {
+function CreateEventForm({ 
+  onSubmit, 
+  loading,
+  editing=false,
+  initialData=null
+ }) {
 
   const [formData, setFormData] = useState({
-    title: "",
-    date: "",
-    location: "",
-    description: "",
-    image: ""
+    title: initialData?.title || "",
+    date: initialData?.date || "",
+    location: initialData?.location || "",
+    description: initialData?.description || "",
+    image: initialData?.image || ""
   });
 
   function handleChange(e) {
@@ -23,14 +28,17 @@ function CreateEventForm({ onSubmit, loading }) {
     e.preventDefault();
 
     onSubmit(formData);
-
-    setFormData({
+    
+    if(!editing){
+      setFormData({
       title: "",
       date: "",
       location: "",
       description: "",
       image: ""
-    });
+    })
+    }
+    ;
   }
 
   return (
@@ -42,7 +50,7 @@ function CreateEventForm({ onSubmit, loading }) {
 
       <h2 className="text-3xl font-bold text-white mb-8">
 
-        Create New Event
+        {editing? "Edit Event" : "Create New Event"}
 
       </h2>
 
@@ -101,7 +109,9 @@ function CreateEventForm({ onSubmit, loading }) {
           disabled={loading}
           className="w-full bg-cyan-400 text-slate-950 font-bold py-4 rounded-xl hover:bg-cyan-300 transition"
         >
-          {loading ? "Publishing..." : "Publish Event"}
+          {loading ?
+          editing? "Updating..." : "Publishing..."
+          :editing? "Update Event" : "Publish Event"}
         </button>
 
       </div>

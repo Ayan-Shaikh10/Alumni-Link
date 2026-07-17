@@ -1,33 +1,58 @@
 import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
-import { getEvents } from "../../services/eventService";
+import { getEvents, registerForEvent } from "../../services/eventService";
+import { useAuth } from "../../contex/AuthContext";
+import { toast } from "react-toastify";
+
 
 function UpcomingEvents() {
 
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const { currentUser } = useAuth();
+
+  async function loadEvents() {
+
+  try {
+
+    const data = await getEvents();
+
+    setEvents(data);
+
+  } catch (error) {
+
+    console.error(error);
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
+}
+
+async function handleRegister(event) {
+
+  try {
+
+    await registerForEvent(event.id, currentUser.uid);
+
+    await loadEvents();
+
+    toast.success("Registerd Succesfully! 🎉");
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+}
+
+
+
   useEffect(() => {
-
-    async function loadEvents() {
-
-      try {
-
-        const data = await getEvents();
-
-        setEvents(data);
-
-      } catch (error) {
-
-        console.error(error);
-
-      } finally {
-
-        setLoading(false);
-
-      }
-
-    }
 
     loadEvents();
 
@@ -105,15 +130,13 @@ function UpcomingEvents() {
 
               key={event.id}
 
-              title={event.title}
+              event={event}
 
-              date={event.date}
-
-              location={event.location}
-
-              onRegister={() =>
-                alert(`Register for ${event.title}`)
+              registered={
+                event.registeredUser?.includes(currentUser?.uid)
               }
+
+              onRegister={handleRegister}
 
             />
 
