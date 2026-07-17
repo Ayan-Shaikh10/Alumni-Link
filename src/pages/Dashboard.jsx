@@ -7,6 +7,7 @@ import ProfileProgress from "../components/dashboard/ProfileProgress";
 import { useAuth } from "../contex/AuthContext";
 import DashboardLayout from "../components/layout/DashboardLayout";
 
+
 // main function
 function Dashboard() {
 
@@ -30,9 +31,9 @@ return (
 
       <DashboardHero userData={userData} />
 
-      <StatsCards />
-
       <ProfileProgress />
+
+      <StatsCards />
 
       <QuickActions />
 

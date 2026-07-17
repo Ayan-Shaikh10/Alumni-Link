@@ -11,10 +11,16 @@ import Events from "./pages/Events";
 import Directory from "./pages/Directory";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
     <Routes>
+
+      
+      <Route path="/admin" element={<AdminDashboard />} />
+
+
 
       <Route element={<MainLayout />}>
 
@@ -25,6 +31,8 @@ function App() {
         <Route path="/directory" element={<Directory />} />
 
         <Route path="/about" element={<About />} />
+
+        
 
       </Route>
 
@@ -38,7 +46,10 @@ function App() {
 
       <Route path="*" element={<NotFound />} />
 
+      
+
     </Routes>
+    
   );
 }
 

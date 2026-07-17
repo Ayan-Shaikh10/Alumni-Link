@@ -1,4 +1,5 @@
 import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
 
 function DashboardLayout({ children }) {
 
@@ -10,13 +11,23 @@ function DashboardLayout({ children }) {
 
       <Sidebar />
 
-      {/* Main Content */}
+      {/* Right Side */}
 
-      <main className="flex-1 overflow-y-auto">
+      <div className="flex-1 flex flex-col">
 
-        {children}
+        {/* Top Navigation */}
 
-      </main>
+        <Topbar />
+
+        {/* Page Content */}
+
+        <main className="flex-1 overflow-y-auto p-8">
+
+          {children}
+
+        </main>
+
+      </div>
 
     </div>
 

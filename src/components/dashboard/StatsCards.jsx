@@ -1,45 +1,88 @@
+import {
+
+  FaUsers,
+
+  FaCalendarAlt,
+
+  FaEnvelope,
+
+  FaUserFriends
+
+} from "react-icons/fa";
+
+import StatCard from "./StatCard";
+
 function StatsCards() {
-
-  const stats = [
-
-    { title: "Alumni", value: "1,250+" },
-
-    { title: "Events", value: "24" },
-
-    { title: "Connections", value: "340" },
-
-    { title: "Messages", value: "18" }
-
-  ];
 
   return (
 
     <section className="max-w-7xl mx-auto px-8 mt-10">
 
-      <div className="grid md:grid-cols-4 gap-6">
+      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-        {stats.map((card) => (
+        <StatCard
 
-          <div
-            key={card.title}
-            className="bg-slate-900 border border-cyan-400/20 rounded-2xl p-6"
-          >
+          title="Total Alumni"
 
-            <p className="text-slate-400">
+          value="1,250+"
 
-              {card.title}
+          subtitle="+12 this month"
 
-            </p>
+          icon={<FaUsers />}
 
-            <h2 className="text-3xl font-bold text-cyan-400 mt-2">
+          iconBg="bg-cyan-500/20"
 
-              {card.value}
+          iconColor="text-cyan-400"
 
-            </h2>
+        />
 
-          </div>
+        <StatCard
 
-        ))}
+          title="Upcoming Events"
+
+          value="24"
+
+          subtitle="3 this week"
+
+          icon={<FaCalendarAlt />}
+
+          iconBg="bg-purple-500/20"
+
+          iconColor="text-purple-400"
+
+        />
+
+        <StatCard
+
+          title="Connections"
+
+          value="340"
+
+          subtitle="+8 this month"
+
+          icon={<FaUserFriends />}
+
+          iconBg="bg-green-500/20"
+
+          iconColor="text-green-400"
+
+        />
+
+        <StatCard
+
+          title="Messages"
+
+          value="18"
+
+          subtitle="5 unread"
+
+          icon={<FaEnvelope />}
+
+          iconBg="bg-pink-500/20"
+
+          iconColor="text-pink-400"
+
+        />
 
       </div>
 

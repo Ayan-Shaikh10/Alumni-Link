@@ -1,87 +1,84 @@
-import { useNavigate } from "react-router-dom";
-
 import {
-  FaUserEdit,
-  FaUsers,
+  FaUser,
   FaCalendarAlt,
-  FaPlusCircle
+  FaBriefcase,
+  FaComments,
+  FaUsers
 } from "react-icons/fa";
+
+import QuickActionCard from "./QuickActionCard";
 
 function QuickActions() {
 
-  const navigate = useNavigate();
-
-  const actions = [
-
-    {
-      title: "Edit Profile",
-      icon: <FaUserEdit className="text-4xl text-cyan-400" />,
-      path: "/profile"
-    },
-
-    {
-      title: "Find Alumni",
-      icon: <FaUsers className="text-4xl text-cyan-400" />,
-      path: "/directory"
-    },
-
-    {
-      title: "Browse Events",
-      icon: <FaCalendarAlt className="text-4xl text-cyan-400" />,
-      path: "/events"
-    },
-
-    {
-      title: "Create Post",
-      icon: <FaPlusCircle className="text-4xl text-cyan-400" />,
-      path: "#"
-    }
-
-  ];
-
   return (
 
-    <section className="max-w-7xl mx-auto px-8 mt-10">
+    <section className="max-w-7xl mx-auto px-8 mt-12">
 
-      <h2 className="text-3xl font-bold text-white mb-8">
+      {/* Heading */}
 
-        Quick Actions
+      <div className="flex items-center justify-between mb-6">
 
-      </h2>
+        <div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h2 className="text-3xl font-bold text-white">
 
-        {actions.map((action) => (
+            Quick Actions
 
-          <button
-            key={action.title}
-            onClick={() => {
+          </h2>
 
-              if (action.path !== "#") {
+          <p className="text-slate-400 mt-1">
 
-                navigate(action.path);
+            Quickly access the most important features.
 
-              }
+          </p>
 
-            }}
-            className="bg-slate-900 border border-cyan-400/20 rounded-2xl p-8 hover:border-cyan-400 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20 transition duration-300"
-          >
+        </div>
 
-            <div className="flex flex-col items-center">
+      </div>
 
-              {action.icon}
+      {/* Cards */}
 
-              <h3 className="text-white font-semibold text-xl mt-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
 
-                {action.title}
+        <QuickActionCard
+          title="Profile"
+          to="/profile"
+          icon={<FaUser />}
+          iconBg="bg-cyan-500/20"
+          iconColor="text-cyan-400"
+        />
 
-              </h3>
+        <QuickActionCard
+          title="Events"
+          to="/events"
+          icon={<FaCalendarAlt />}
+          iconBg="bg-purple-500/20"
+          iconColor="text-purple-400"
+        />
 
-            </div>
+        <QuickActionCard
+          title="Jobs"
+          to="/jobs"
+          icon={<FaBriefcase />}
+          iconBg="bg-green-500/20"
+          iconColor="text-green-400"
+        />
 
-          </button>
+        <QuickActionCard
+          title="Messages"
+          to="/messages"
+          icon={<FaComments />}
+          iconBg="bg-pink-500/20"
+          iconColor="text-pink-400"
+        />
 
-        ))}
+        <QuickActionCard
+          title="Directory"
+          to="/directory"
+          icon={<FaUsers />}
+          iconBg="bg-orange-500/20"
+          iconColor="text-orange-400"
+        />
 
       </div>
 

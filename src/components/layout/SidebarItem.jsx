@@ -18,7 +18,7 @@ function SidebarItem({
 
       className={({ isActive }) =>
 
-        `flex items-center gap-4 px-5 py-3 rounded-xl transition-all duration-200 font-medium
+        `flex items-center gap-4 px-8 py-5 rounded-xl transition-all duration-200 font-medium
 
         ${
 
