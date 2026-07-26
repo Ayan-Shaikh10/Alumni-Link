@@ -6,6 +6,7 @@ import RecentAlumni from "../components/dashboard/RecentAlumni";
 import ProfileProgress from "../components/dashboard/ProfileProgress";
 import { useAuth } from "../contex/AuthContext";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import DashboardQuote from "../assets/dashboard/DashboardQuote";
 
 
 // main function
@@ -43,7 +44,11 @@ return (
 
     </div>
 
+    <DashboardQuote />
+
   </DashboardLayout>
+
+  
 
 );
 

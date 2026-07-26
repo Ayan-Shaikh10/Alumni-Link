@@ -50,7 +50,7 @@ function QuickActions() {
 
         <QuickActionCard
           title="Events"
-          to="/events"
+          to="/dashboard/events"
           icon={<FaCalendarAlt />}
           iconBg="bg-purple-500/20"
           iconColor="text-purple-400"
@@ -65,8 +65,8 @@ function QuickActions() {
         />
 
         <QuickActionCard
-          title="Messages"
-          to="/messages"
+          title="Message"
+          to="/dashboard/message"
           icon={<FaComments />}
           iconBg="bg-pink-500/20"
           iconColor="text-pink-400"
@@ -74,7 +74,7 @@ function QuickActions() {
 
         <QuickActionCard
           title="Directory"
-          to="/directory"
+          to="/dashboard/alumni"
           icon={<FaUsers />}
           iconBg="bg-orange-500/20"
           iconColor="text-orange-400"

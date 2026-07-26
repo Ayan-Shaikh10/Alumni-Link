@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,45 +14,140 @@ import Directory from "./pages/Directory";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AlumniDashboard from "./pages/AlumniDashboard";
+import AdminRoute from "./components/auth/AdminRoute";
+
+import EventsDashboard from "./pages/EventDashboard";
+import Messages from "./pages/Messaage";
+import Settings from "./pages/Setting";
 
 function App() {
   return (
     <Routes>
 
-      
-        <Route path="/admin" element={<AdminDashboard />} />
-      
+      {/* ADMIN */}
+
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        }
+      />
 
 
+      {/* PUBLIC WEBSITE */}
 
       <Route element={<MainLayout />}>
 
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-        <Route path="/events" element={<Events />} />
+        <Route
+          path="/events"
+          element={<Events />}
+        />
 
-        <Route path="/directory" element={<Directory />} />
+        <Route
+          path="/directory"
+          element={<Directory />}
+        />
 
-        <Route path="/about" element={<About />} />
-
-        
+        <Route
+          path="/about"
+          element={<About />}
+        />
 
       </Route>
 
-      <Route path="/login" element={<Login />} />
 
-      <Route path="/register" element={<Register />} />
+      {/* AUTHENTICATION */}
 
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/login"
+        element={<Login />}
+      />
 
-      <Route path="/profile" element={<Profile />} />
+      <Route
+        path="/register"
+        element={<Register />}
+      />
 
-      <Route path="*" element={<NotFound />} />
+
+      {/* LOGGED-IN USER */}
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+        
+      />
+
+      <Route
+        path="/dashboard/alumni"
+        element={
+          <ProtectedRoute>
+            <AlumniDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+        
+      />
 
       
+      <Route
+        path="/dashboard/events"
+        element={
+          <ProtectedRoute>
+            <EventsDashboard />
+          </ProtectedRoute>
+        }
+        
+      />
+
+      <Route
+        path="/dashboard/message"
+        element={
+          <ProtectedRoute>
+            <Messages />
+          </ProtectedRoute>
+        }
+        
+      />
+
+      <Route
+        path="/dashboard/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+        
+      />
+
+
+      {/* NOT FOUND */}
+
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
 
     </Routes>
-    
   );
 }
 

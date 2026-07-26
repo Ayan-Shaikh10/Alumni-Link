@@ -1,6 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
 import HeroImage from "../assets/images/Hero.svg";
-
+import { Navigate } from "react-router-dom";
 function Hero() {
 
     return (
@@ -54,7 +54,9 @@ function Hero() {
 
                         <div className="flex gap-10 mt-15">
 
-                            <button className="bg-cyan-400 text-black px-7 py-3 rounded-xl font-semibold hover:scale-105 transition">
+                            <button onClick={() => Navigate("/register")}
+                            
+                            className="bg-cyan-400 text-black px-7 py-3 rounded-xl font-semibold hover:scale-105 transition">
 
                                 Join Now
 

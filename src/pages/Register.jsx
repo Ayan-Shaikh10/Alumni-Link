@@ -39,6 +39,8 @@ function Register() {
 
     phone: "",
 
+    role:"",
+
     degree: "",
 
     department: "",
@@ -64,6 +66,8 @@ function Register() {
   email: "",
 
   phone: "",
+
+  role:"",
 
   degree: "",
 
@@ -149,6 +153,10 @@ const validateForm = () => {
 
     newErrors.phone = "Phone Number must contain exactly 10 digits.";
 
+  }
+
+  if(formData.role===""){
+    newErrors.role="Please select whether you are a Student or Alumni";
   }
 
   // ---------- Degree ----------
@@ -258,6 +266,8 @@ const handleSubmit = async (e) => {
       email: formData.email,
 
       phone: formData.phone,
+
+      role: formData.role,
 
       degree: formData.degree,
 
@@ -507,6 +517,120 @@ setLoading(false);
           </div>
 
         </div>
+
+        {/* ============================= */}
+{/* ACCOUNT TYPE */}
+{/* ============================= */}
+
+<div className="mb-12">
+
+  <label className="block text-slate-300 mb-2">
+
+    I am a
+
+  </label>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <button
+      type="button"
+      onClick={() => {
+
+        setFormData({
+
+          ...formData,
+
+          role: "student"
+
+        });
+
+        setErrors({
+
+          ...errors,
+
+          role: ""
+
+        });
+
+      }}
+      className={`
+        py-4
+        rounded-xl
+        border
+        font-semibold
+        transition
+        ${
+          formData.role === "student"
+
+            ? "bg-cyan-400 text-slate-950 border-cyan-400"
+
+            : "bg-slate-800 text-slate-300 border-slate-700 hover:border-cyan-400"
+        }
+      `}
+    >
+
+      🎓 Current Student
+
+    </button>
+
+
+    <button
+      type="button"
+      onClick={() => {
+
+        setFormData({
+
+          ...formData,
+
+          role: "alumni"
+
+        });
+
+        setErrors({
+
+          ...errors,
+
+          role: ""
+
+        });
+
+      }}
+      className={`
+        py-4
+        rounded-xl
+        border
+        font-semibold
+        transition
+        ${
+          formData.role === "alumni"
+
+            ? "bg-cyan-400 text-slate-950 border-cyan-400"
+
+            : "bg-slate-800 text-slate-300 border-slate-700 hover:border-cyan-400"
+        }
+      `}
+    >
+
+      🎓 Alumni
+
+    </button>
+
+  </div>
+
+
+  {errors.role && (
+
+    <p className="text-red-400 text-sm mt-2">
+
+      {errors.role}
+
+    </p>
+
+  )}
+
+</div>
+
+
 
         {/* ============================= */}
 

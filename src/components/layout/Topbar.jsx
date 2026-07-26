@@ -1,7 +1,10 @@
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../contex/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Topbar() {
+
+  const Navigate = useNavigate();
 
   const { userData } = useAuth();
 
@@ -21,7 +24,21 @@ function Topbar() {
 
   return (
 
-    <header className="bg-slate-950 border-b border-slate-800 px-10 py-7">
+    <header className="
+
+      bg-slate-950/70
+
+      backdrop-blur-xl
+
+      border-b
+
+      border-white/10
+
+      px-10
+
+      py-7
+
+    ">
 
       <div className="flex justify-between items-center">
 
@@ -31,7 +48,7 @@ function Topbar() {
 
           <h1 className="text-4xl font-bold text-white">
 
-            👋 {greeting},
+            {greeting},
 
             <span className="text-cyan-400">
 
@@ -53,7 +70,13 @@ function Topbar() {
 
         <div className="flex items-center gap-6">
 
-          <button className="relative p-3 rounded-xl bg-slate-900 hover:bg-slate-800 transition">
+          <button
+
+            onClick={() => Navigate("/dashboard/message")}
+
+            className="relative p-3 rounded-xl bg-slate-900/70 hover:bg-slate-800/80 transition"
+
+          >
 
             <FaBell className="text-cyan-400 text-xl" />
 
@@ -61,27 +84,35 @@ function Topbar() {
 
           </button>
 
-          <div className="flex items-center gap-3 bg-slate-900 rounded-xl px-4 py-3">
+          <div className="flex items-center gap-3 bg-slate-900/70 backdrop-blur-md rounded-xl px-4 py-3">
 
             <FaUserCircle className="text-cyan-400 text-4xl" />
 
-            <div>
+            <button
 
-              <h3 className="text-white font-semibold">
+              onClick={() => Navigate("/profile")}
 
-                {userData?.fullName || "User"}
+              className="text-left"
 
-              </h3>
+            >
 
-              <p className="text-slate-400 text-sm">
+              <div>
 
-                Alumni Member
+                <h3 className="text-white font-semibold">
 
-              </p>
-             
+                  {userData?.fullName || "User"}
 
+                </h3>
 
-            </div>
+                <p className="text-slate-400 text-sm">
+
+                  Alumni Member
+
+                </p>
+
+              </div>
+
+            </button>
 
           </div>
 

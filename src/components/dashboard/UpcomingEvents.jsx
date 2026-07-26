@@ -1,55 +1,113 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import EventCard from "./EventCard";
-import { getEvents, registerForEvent } from "../../services/eventService";
+
+import {
+  getEvents,
+  registerForEvent
+} from "../../services/eventService";
+
 import { useAuth } from "../../contex/AuthContext";
+
 import { toast } from "react-toastify";
 
 
 function UpcomingEvents() {
 
+
   const [events, setEvents] = useState([]);
+
   const [loading, setLoading] = useState(true);
+
 
   const { currentUser } = useAuth();
 
+  const navigate = useNavigate();
+
+
   async function loadEvents() {
 
-  try {
+    try {
 
-    const data = await getEvents();
+      const data = await getEvents();
 
-    setEvents(data);
 
-  } catch (error) {
+      /*
+        Show only the latest 6 events
 
-    console.error(error);
+        If createdAt exists, newest events
+        will appear first.
+      */
 
-  } finally {
+      const latestEvents = [...data]
 
-    setLoading(false);
+        .sort((a, b) => {
+
+          const dateA = a.createdAt?.toDate
+
+            ? a.createdAt.toDate()
+
+            : new Date(0);
+
+
+          const dateB = b.createdAt?.toDate
+
+            ? b.createdAt.toDate()
+
+            : new Date(0);
+
+
+          return dateB - dateA;
+
+        })
+
+        .slice(0, 6);
+
+
+      setEvents(latestEvents);
+
+
+    } catch (error) {
+
+      console.error(error);
+
+    } finally {
+
+      setLoading(false);
+
+    }
 
   }
 
-}
 
-async function handleRegister(event) {
+  async function handleRegister(event) {
 
-  try {
 
-    await registerForEvent(event.id, currentUser.uid);
+    try {
 
-    await loadEvents();
+      await registerForEvent(
 
-    toast.success("Registerd Succesfully! 🎉");
+        event.id,
 
-  } catch (error) {
+        currentUser.uid
 
-    console.error(error);
+      );
+
+
+      await loadEvents();
+
+
+      toast.success("Registered Successfully! 🎉");
+
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
 
   }
-
-}
-
 
 
   useEffect(() => {
@@ -58,13 +116,20 @@ async function handleRegister(event) {
 
   }, []);
 
+
   return (
 
     <section className="max-w-7xl mx-auto px-8 mt-12">
 
-      {/* Heading */}
+
+      {/* =============================== */}
+
+      {/* SECTION HEADER */}
+
+      {/* =============================== */}
 
       <div className="flex items-center justify-between mb-6">
+
 
         <div>
 
@@ -74,6 +139,7 @@ async function handleRegister(event) {
 
           </h2>
 
+
           <p className="text-slate-400 mt-1">
 
             Stay connected with upcoming alumni activities.
@@ -82,9 +148,30 @@ async function handleRegister(event) {
 
         </div>
 
+
+        {/* View All */}
+
+        <button
+
+          onClick={() => navigate("/dashboard/events")}
+
+          className="text-cyan-400 font-semibold hover:text-cyan-300 transition"
+
+        >
+
+          View All →
+
+        </button>
+
+
       </div>
 
-      {/* Loading */}
+
+      {/* =============================== */}
+
+      {/* LOADING */}
+
+      {/* =============================== */}
 
       {loading && (
 
@@ -96,7 +183,12 @@ async function handleRegister(event) {
 
       )}
 
-      {/* Empty */}
+
+      {/* =============================== */}
+
+      {/* EMPTY */}
+
+      {/* =============================== */}
 
       {!loading && events.length === 0 && (
 
@@ -108,6 +200,7 @@ async function handleRegister(event) {
 
           </h3>
 
+
           <p className="text-slate-400 mt-2">
 
             New alumni events will appear here.
@@ -118,11 +211,16 @@ async function handleRegister(event) {
 
       )}
 
-      {/* Event Cards */}
+
+      {/* =============================== */}
+
+      {/* EVENT CARDS */}
+
+      {/* =============================== */}
 
       {!loading && events.length > 0 && (
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
           {events.map((event) => (
 
@@ -133,7 +231,13 @@ async function handleRegister(event) {
               event={event}
 
               registered={
-                event.registeredUser?.includes(currentUser?.uid)
+
+                event.registeredUser?.includes(
+
+                  currentUser?.uid
+
+                )
+
               }
 
               onRegister={handleRegister}
@@ -146,10 +250,12 @@ async function handleRegister(event) {
 
       )}
 
+
     </section>
 
   );
 
 }
+
 
 export default UpcomingEvents;

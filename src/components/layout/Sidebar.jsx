@@ -34,6 +34,8 @@ function Sidebar() {
 
           label="Dashboard"
 
+          end
+
         />
 
         <SidebarItem
@@ -48,7 +50,7 @@ function Sidebar() {
 
         <SidebarItem
 
-          to="/directory"
+          to="/dashboard/alumni"
 
           icon={<FaUsers />}
 
@@ -58,7 +60,7 @@ function Sidebar() {
 
         <SidebarItem
 
-          to="/events"
+          to="/dashboard/events"
 
           icon={<FaCalendarAlt />}
 
@@ -78,7 +80,7 @@ function Sidebar() {
 
         <SidebarItem
 
-          to="/messages"
+          to="/dashboard/message"
 
           icon={<FaEnvelope />}
 
@@ -88,7 +90,7 @@ function Sidebar() {
 
         <SidebarItem
 
-          to="/settings"
+          to="/dashboard/settings"
 
           icon={<FaCog />}
 

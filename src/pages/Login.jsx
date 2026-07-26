@@ -12,6 +12,7 @@ import {
   FaEye,
   FaEyeSlash
 } from "react-icons/fa";
+import { getUser } from "../services/userService";
 
 function Login() {
 
@@ -57,7 +58,7 @@ function Login() {
 
   try {
 
-    await signInWithEmailAndPassword(
+    const userCredential = await signInWithEmailAndPassword(
 
       auth,
 
@@ -67,9 +68,17 @@ function Login() {
 
     );
 
+    const user = userCredential.user;
+    const userData = await getUser(user.uid);
+
     toast.success("Welcome back!");
 
-    navigate("/dashboard");
+    if(userData?.role === "admin") {
+      navigate("/admin");
+
+    } else {
+      navigate("/dashboard");
+    }
 
   }
 

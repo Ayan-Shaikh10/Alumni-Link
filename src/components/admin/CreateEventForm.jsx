@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function CreateEventForm({ 
   onSubmit, 
   loading,
   editing=false,
-  initialData=null
+  initialData=null,
+  onCancelEdit
  }) {
 
   const [formData, setFormData] = useState({
@@ -14,6 +15,26 @@ function CreateEventForm({
     description: initialData?.description || "",
     image: initialData?.image || ""
   });
+
+  useEffect(() => {
+  if (initialData) {
+    setFormData({
+      title: initialData.title || "",
+      date: initialData.date || "",
+      location: initialData.location || "",
+      description: initialData.description || "",
+      image: initialData.image || ""
+    });
+  } else {
+    setFormData({
+      title: "",
+      date: "",
+      location: "",
+      description: "",
+      image: ""
+    });
+  }
+}, [initialData]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -113,6 +134,26 @@ function CreateEventForm({
           editing? "Updating..." : "Publishing..."
           :editing? "Update Event" : "Publish Event"}
         </button>
+
+        {editing && (
+  <button
+    type="button"
+    onClick={onCancelEdit}
+    className="
+      w-full
+      mt-3
+      bg-slate-700
+      text-white
+      font-bold
+      py-4
+      rounded-xl
+      hover:bg-slate-600
+      transition
+    "
+  >
+    Cancel Edit
+  </button>
+)}
 
       </div>
 

@@ -5,7 +5,7 @@ function DashboardLayout({ children }) {
 
   return (
 
-    <div className="min-h-screen bg-slate-950 flex">
+    <div className="h-screen overflow-hidden bg-slate-950 flex">
 
       {/* Sidebar */}
 
@@ -13,19 +13,23 @@ function DashboardLayout({ children }) {
 
       {/* Right Side */}
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 min-w-0 min-h-0 relative">
 
-        {/* Top Navigation */}
+        {/* Scrollable Content */}
 
-        <Topbar />
-
-        {/* Page Content */}
-
-        <main className="flex-1 overflow-y-auto p-8">
+        <main className="h-full overflow-y-auto pt-40 px-8 pb-8">
 
           {children}
 
         </main>
+
+        {/* Glassy Topbar */}
+
+        <div className="absolute top-0 left-0 right-0 z-50">
+
+          <Topbar />
+
+        </div>
 
       </div>
 

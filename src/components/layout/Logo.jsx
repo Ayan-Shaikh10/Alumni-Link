@@ -6,7 +6,7 @@ function Logo() {
 
     <div className="flex items-center gap-3 px-6 py-8 border-b border-slate-800">
 
-      <div className="w-12 h-12 rounded-xl bg-cyan-400 flex items-center justify-center shadow-lg">
+      <div className="w-12 h-17 rounded-xl bg-cyan-400 flex items-center justify-center shadow-lg">
 
         <FaGraduationCap className="text-black text-2xl" />
 
