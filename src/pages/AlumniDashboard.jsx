@@ -4,7 +4,7 @@ import Directory from "./Directory";
 function AlumniDashboard(){
     return (
         <DashboardLayout>
-            <Directory />
+            <Directory showConnectButton = {true} />
         </DashboardLayout>
     );
 }

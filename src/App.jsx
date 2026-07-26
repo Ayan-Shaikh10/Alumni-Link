@@ -20,6 +20,7 @@ import AdminRoute from "./components/auth/AdminRoute";
 import EventsDashboard from "./pages/EventDashboard";
 import Messages from "./pages/Messaage";
 import Settings from "./pages/Setting";
+import DashboardLayout from "./components/layout/DashboardLayout";
 
 function App() {
   return (
@@ -123,7 +124,10 @@ function App() {
         path="/dashboard/message"
         element={
           <ProtectedRoute>
+            <DashboardLayout>
+              
             <Messages />
+            </DashboardLayout>
           </ProtectedRoute>
         }
         
