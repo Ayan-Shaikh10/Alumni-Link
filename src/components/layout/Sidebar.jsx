@@ -5,26 +5,56 @@ import {
   FaCalendarAlt,
   FaNewspaper,
   FaEnvelope,
-  FaCog
+  FaCog,
+  FaPeopleArrows,
+  FaPeopleCarry,
+  FaSchool,
+  FaSearch
 } from "react-icons/fa";
 
 import Logo from "./Logo";
 import SidebarItem from "./SidebarItem";
 import SidebarProfile from "./SidebarProfile";
 
+import { FaPeopleGroup, FaSchoolFlag } from "react-icons/fa6";
+
+import { useAuth } from "../../contex/AuthContext";
+
+
 function Sidebar() {
+
+  const {
+    currentUser,
+    userData
+  } = useAuth();
+
 
   return (
 
     <aside className="w-85 h-screen bg-slate-900 border-r border-slate-800 flex flex-col">
 
-      {/* Logo */}
+
+      {/* ============================================================ */}
+
+      {/* LOGO */}
+
+      {/* ============================================================ */}
+
 
       <Logo />
 
-      {/* Navigation */}
+
+      {/* ============================================================ */}
+
+      {/* NAVIGATION */}
+
+      {/* ============================================================ */}
+
 
       <nav className="flex-1 py-8 px-10 space-y-3">
+
+
+        {/* DASHBOARD */}
 
         <SidebarItem
 
@@ -38,6 +68,9 @@ function Sidebar() {
 
         />
 
+
+        {/* PROFILE */}
+
         <SidebarItem
 
           to="/profile"
@@ -47,6 +80,9 @@ function Sidebar() {
           label="Profile"
 
         />
+
+
+        {/* FIND ALUMNI */}
 
         <SidebarItem
 
@@ -58,6 +94,26 @@ function Sidebar() {
 
         />
 
+
+        {/* FIND STUDENT - ALUMNI ONLY */}
+
+        {userData?.role === "alumni" && (
+
+          <SidebarItem
+
+            to="/dashboard/student"
+
+            icon={<FaSearch />}
+
+            label="Find Student"
+
+          />
+
+        )}
+
+
+        {/* EVENTS */}
+
         <SidebarItem
 
           to="/dashboard/events"
@@ -68,15 +124,21 @@ function Sidebar() {
 
         />
 
+
+        {/* COMMUNITY FEED */}
+
         <SidebarItem
 
-          to="/feed"
+          to="/dashboard/feed"
 
           icon={<FaNewspaper />}
 
           label="Community Feed"
 
         />
+
+
+        {/* MESSAGES */}
 
         <SidebarItem
 
@@ -88,6 +150,9 @@ function Sidebar() {
 
         />
 
+
+        {/* SETTINGS */}
+
         <SidebarItem
 
           to="/dashboard/settings"
@@ -98,16 +163,25 @@ function Sidebar() {
 
         />
 
+
       </nav>
 
-      {/* Logged-in User */}
+
+      {/* ============================================================ */}
+
+      {/* LOGGED-IN USER */}
+
+      {/* ============================================================ */}
+
 
       <SidebarProfile />
+
 
     </aside>
 
   );
 
 }
+
 
 export default Sidebar;

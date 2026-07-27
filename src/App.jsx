@@ -4,6 +4,7 @@ import MainLayout from "./layouts/MainLayout";
 
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -21,6 +22,9 @@ import EventsDashboard from "./pages/EventDashboard";
 import Messages from "./pages/Messaage";
 import Settings from "./pages/Setting";
 import DashboardLayout from "./components/layout/DashboardLayout";
+import CommunityFeed from "./pages/CommunityFeed";
+import Jobs from "./pages/Jobs";
+import StudentDirectory from "./pages/StudentDirectory";
 
 function App() {
   return (
@@ -81,6 +85,18 @@ function App() {
       {/* LOGGED-IN USER */}
 
       <Route
+        path="/jobs"
+        element={
+          <DashboardLayout>
+            <ProtectedRoute>
+              <Jobs />
+           </ProtectedRoute>
+          </DashboardLayout>
+        }
+        
+      />
+
+      <Route
         path="/dashboard"
         element={
           <ProtectedRoute>
@@ -97,6 +113,18 @@ function App() {
             <AlumniDashboard />
           </ProtectedRoute>
         }
+      />
+
+      <Route
+        path="/dashboard/student"
+        element={
+          <DashboardLayout>
+            <ProtectedRoute>
+              <StudentDirectory />
+           </ProtectedRoute>
+          </DashboardLayout>
+        }
+        
       />
 
       <Route
@@ -121,17 +149,30 @@ function App() {
       />
 
       <Route
+        path="/dashboard/feed"
+        element={
+          <DashboardLayout>
+            <ProtectedRoute>
+              <CommunityFeed />
+           </ProtectedRoute>
+          </DashboardLayout>
+        }
+        
+      />
+
+      <Route
         path="/dashboard/message"
         element={
           <ProtectedRoute>
             <DashboardLayout>
-              
-            <Messages />
+              <Messages />
             </DashboardLayout>
           </ProtectedRoute>
         }
         
       />
+
+      
 
       <Route
         path="/dashboard/settings"

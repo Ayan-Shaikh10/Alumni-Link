@@ -51,7 +51,7 @@ function Directory({ showConnectButton = false }) {
 
       const alumni = usersData.filter(
 
-        user => user.role === "alumni"
+        user => user.role === "alumni" && user.id !== currentUser?.uid
 
       );
 

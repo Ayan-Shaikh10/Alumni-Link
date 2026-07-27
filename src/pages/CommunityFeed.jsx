@@ -1,0 +1,142 @@
+import {
+  FaUsers,
+  FaComments,
+  FaRocket,
+  FaGraduationCap
+} from "react-icons/fa";
+
+
+function CommunityFeed() {
+
+  return (
+
+    <div className="w-full min-h-[calc(100vh-12rem)] flex items-center justify-center">
+
+      <div className="w-full max-w-3xl px-6">
+
+        <div className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-slate-900/80 shadow-2xl">
+
+          {/* Decorative background glow */}
+
+          <div className="absolute -top-32 -right-32 w-72 h-72 bg-cyan-400/10 rounded-full blur-3xl"></div>
+
+          <div className="absolute -bottom-32 -left-32 w-72 h-72 bg-cyan-400/5 rounded-full blur-3xl"></div>
+
+
+          {/* Content */}
+
+          <div className="relative z-10 px-8 sm:px-16 py-16 sm:py-20 text-center">
+
+
+            {/* Icon */}
+
+            <div className="w-24 h-24 mx-auto mb-8 rounded-3xl bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center shadow-[0_0_35px_rgba(34,211,238,0.12)]">
+
+              <FaUsers className="text-cyan-400 text-4xl" />
+
+            </div>
+
+
+            {/* Badge */}
+
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 text-sm font-semibold">
+
+              <FaRocket className="text-xs" />
+
+              Community Feed
+
+            </div>
+
+
+            {/* Heading */}
+
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-5">
+
+              Coming Soon
+
+            </h1>
+
+
+            {/* Description */}
+
+            <p className="max-w-xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed">
+
+              We are building a vibrant community space where students and alumni can share ideas, experiences, opportunities, achievements, and connect with each other.
+
+            </p>
+
+
+            {/* Feature preview */}
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+
+
+              <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/70">
+
+                <FaComments className="text-cyan-400 text-xl mx-auto mb-3" />
+
+                <p className="text-slate-300 text-sm font-medium">
+
+                  Share & Discuss
+
+                </p>
+
+              </div>
+
+
+              <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/70">
+
+                <FaUsers className="text-cyan-400 text-xl mx-auto mb-3" />
+
+                <p className="text-slate-300 text-sm font-medium">
+
+                  Connect Together
+
+                </p>
+
+              </div>
+
+
+              <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/70">
+
+                <FaGraduationCap className="text-cyan-400 text-xl mx-auto mb-3" />
+
+                <p className="text-slate-300 text-sm font-medium">
+
+                  Grow Together
+
+                </p>
+
+              </div>
+
+
+            </div>
+
+
+            {/* Bottom message */}
+
+            <div className="mt-10 pt-6 border-t border-slate-800">
+
+              <p className="text-slate-500 text-sm">
+
+                Something exciting is on the way for the Alumni-Link community 🚀
+
+              </p>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
+
+}
+
+
+export default CommunityFeed;

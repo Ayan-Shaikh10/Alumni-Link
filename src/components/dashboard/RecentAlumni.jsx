@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import RecentAlumniCard from "./RecentAlumniCard";
 
 import { getUsers } from "../../services/userService";
+import { useAuth } from "../../contex/AuthContext";
 
 
 function RecentAlumni() {
@@ -13,6 +14,9 @@ function RecentAlumni() {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const { currentUser } = useAuth();
+
 
 
   async function loadAlumni() {
@@ -28,7 +32,7 @@ function RecentAlumni() {
 
         .filter(
 
-          user => user.role === "alumni"
+          user => user.role === "alumni" && user.id !== currentUser?.uid
 
         )
 
@@ -61,7 +65,7 @@ function RecentAlumni() {
 
     loadAlumni();
 
-  }, []);
+  }, [currentUser]);
 
 
   return (

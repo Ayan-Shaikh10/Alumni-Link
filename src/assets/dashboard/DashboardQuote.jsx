@@ -2,7 +2,8 @@ import {
   FaLinkedinIn,
   FaTwitter,
   FaFacebookF,
-  FaInstagram
+  FaInstagram,
+  FaGithub
 } from "react-icons/fa";
 
 function DashboardQuote() {
@@ -59,14 +60,14 @@ function DashboardQuote() {
               href="#"
               className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 transition"
             >
-              <FaFacebookF />
+              <FaInstagram />
             </a>
 
             <a
-              href="#"
+              href="https://github.com/Ayan-Shaikh10/"
               className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 transition"
             >
-              <FaInstagram />
+              <FaGithub />
             </a>
 
           </div>
