@@ -25,6 +25,9 @@ import DashboardLayout from "./components/layout/DashboardLayout";
 import CommunityFeed from "./pages/CommunityFeed";
 import Jobs from "./pages/Jobs";
 import StudentDirectory from "./pages/StudentDirectory";
+import PublicEvents from "./components/publicPages/PublicEvents";
+import PublicAlumni from "./components/publicPages/PublicAlumni";
+import PublicAbout from "./components/publicPages/PublicAbout";
 
 function App() {
   return (
@@ -51,20 +54,7 @@ function App() {
           element={<Home />}
         />
 
-        <Route
-          path="/events"
-          element={<Events />}
-        />
-
-        <Route
-          path="/directory"
-          element={<Directory />}
-        />
-
-        <Route
-          path="/about"
-          element={<About />}
-        />
+       
 
       </Route>
 
